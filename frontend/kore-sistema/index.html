@@ -1,0 +1,1016 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KoreArmazen · Sistema de Gestão</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/assets/kore-sistema/style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-icon"><i class='bx bx-package'></i></div>
+    <div class="logo-text"><span>Kore</span>Armazen</div>
+  </div>
+
+  <nav class="side-nav">
+    <div class="nav-group">
+      <span class="nav-label">Principal</span>
+      <ul>
+        <li class="nav-item active" data-page="dashboard">
+          <a href="#"><i class='bx bxs-dashboard'></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-item" data-page="estoque">
+          <a href="#"><i class='bx bx-cube-alt'></i><span>Estoque</span></a>
+        </li>
+        <li class="nav-item" data-page="saidas">
+          <a href="#"><i class='bx bx-export'></i><span>Saídas</span></a>
+        </li>
+        <li class="nav-item" data-page="entradas">
+          <a href="#"><i class='bx bx-import'></i><span>Entradas</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Gestão</span>
+      <ul>
+        <li class="nav-item" data-page="fornecedor">
+          <a href="#"><i class='bx bxs-truck'></i><span>Fornecedores</span></a>
+        </li>
+        <li class="nav-item" data-page="usuarios">
+          <a href="#"><i class='bx bxs-group'></i><span>Usuários</span></a>
+        </li>
+        <li class="nav-item" data-page="relatorios">
+          <a href="#"><i class='bx bx-bar-chart-alt-2'></i><span>Relatórios</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label">Sistema</span>
+      <ul>
+        <li class="nav-item" data-page="configuracoes">
+          <a href="#"><i class='bx bxs-cog'></i><span>Configurações</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-mini">
+      <div class="user-avatar-mini">AD</div>
+      <div class="user-info-mini">
+        <p class="user-name-mini">Admin Kore</p>
+        <p class="user-role-mini">Administrador</p>
+      </div>
+    </div>
+    <button class="logout-btn" title="Sair"><i class='bx bx-log-out'></i></button>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrap" id="mainWrap">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button class="toggle-btn" id="toggleBtn"><i class='bx bx-menu'></i></button>
+    <div class="breadcrumb-area">
+      <span class="page-label" id="pageLabel">Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Buscar produtos, fornecedores...">
+        <kbd>⌘K</kbd>
+      </div>
+      <button class="icon-btn" id="themeBtn" title="Alternar tema"><i class='bx bx-moon'></i></button>
+      <button class="icon-btn notif-btn">
+        <i class='bx bx-bell'></i>
+        <span class="badge">5</span>
+      </button>
+      <div class="topbar-avatar">AD</div>
+    </div>
+  </header>
+
+  <!-- PAGES -->
+  <main class="page-content">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="page-sub">Visão geral do sistema — <span id="currentDate"></span></p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-calendar'></i> Este mês</button>
+          <button class="btn-primary"><i class='bx bx-download'></i> Exportar</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-orange">
+          <div class="kpi-icon"><i class='bx bx-cube-alt'></i></div>
+          <div class="kpi-body">
+            <p class="kpi-label">Itens em Estoque</p>
+            <h2 class="kpi-value">3.847</h2>
+            <p class="kpi-change up"><i class='bx bx-trending-up'></i> +12,4% vs mês anterior</p>
+          </div>
+          <div class="kpi-chart">
+            <svg viewBox="0 0 80 32"><polyline points="0,28 15,20 30,22 45,10 60,14 80,4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="kpi-card kpi-violet">
+          <div class="kpi-icon"><i class='bx bx-export'></i></div>
+          <div class="kpi-body">
+            <p class="kpi-label">Saídas no Mês</p>
+            <h2 class="kpi-value">1.284</h2>
+            <p class="kpi-change up"><i class='bx bx-trending-up'></i> +8,7% vs mês anterior</p>
+          </div>
+          <div class="kpi-chart">
+            <svg viewBox="0 0 80 32"><polyline points="0,24 15,18 30,26 45,8 60,16 80,6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="kpi-card kpi-teal">
+          <div class="kpi-icon"><i class='bx bx-import'></i></div>
+          <div class="kpi-body">
+            <p class="kpi-label">Entradas no Mês</p>
+            <h2 class="kpi-value">892</h2>
+            <p class="kpi-change down"><i class='bx bx-trending-down'></i> -3,1% vs mês anterior</p>
+          </div>
+          <div class="kpi-chart">
+            <svg viewBox="0 0 80 32"><polyline points="0,8 15,14 30,10 45,20 60,18 80,24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="kpi-card kpi-rose">
+          <div class="kpi-icon"><i class='bx bx-dollar-circle'></i></div>
+          <div class="kpi-body">
+            <p class="kpi-label">Valor em Estoque</p>
+            <h2 class="kpi-value">R$ 284k</h2>
+            <p class="kpi-change up"><i class='bx bx-trending-up'></i> +5,2% vs mês anterior</p>
+          </div>
+          <div class="kpi-chart">
+            <svg viewBox="0 0 80 32"><polyline points="0,20 15,16 30,18 45,10 60,12 80,4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts row -->
+      <div class="charts-row">
+        <div class="chart-card big">
+          <div class="chart-header">
+            <div>
+              <h3>Movimentação Mensal</h3>
+              <p>Entradas e saídas nos últimos 6 meses</p>
+            </div>
+            <div class="chart-legend">
+              <span class="leg-item leg-in"><i></i>Entradas</span>
+              <span class="leg-item leg-out"><i></i>Saídas</span>
+            </div>
+          </div>
+          <div class="bar-chart" id="mainBarChart"></div>
+        </div>
+        <div class="chart-card small">
+          <div class="chart-header">
+            <div>
+              <h3>Por Categoria</h3>
+              <p>Distribuição do estoque</p>
+            </div>
+          </div>
+          <div class="donut-wrap">
+            <svg class="donut-chart" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#f97316" stroke-width="16" stroke-dasharray="115 174" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#a78bfa" stroke-width="16" stroke-dasharray="72 217" stroke-dashoffset="-115" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#2dd4bf" stroke-width="16" stroke-dasharray="52 237" stroke-dashoffset="-187" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#fb7185" stroke-width="16" stroke-dasharray="50 239" stroke-dashoffset="-239" transform="rotate(-90 60 60)"/>
+              <text x="60" y="55" text-anchor="middle" class="donut-center-top">Total</text>
+              <text x="60" y="70" text-anchor="middle" class="donut-center-val">3.847</text>
+            </svg>
+            <ul class="donut-legend">
+              <li><span style="background:#f97316"></span>Eletrônicos <b>39%</b></li>
+              <li><span style="background:#a78bfa"></span>Ferramentas <b>25%</b></li>
+              <li><span style="background:#2dd4bf"></span>Materiais <b>18%</b></li>
+              <li><span style="background:#fb7185"></span>Outros <b>18%</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="bottom-row">
+        <div class="table-card">
+          <div class="card-header">
+            <h3><i class='bx bx-time-five'></i> Últimas Movimentações</h3>
+            <button class="btn-ghost">Ver todas</button>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Produto</th><th>Tipo</th><th>Qtd</th><th>Responsável</th><th>Data</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div class="prod-cell"><div class="prod-icon pi-blue"><i class='bx bx-chip'></i></div>Processador i9</div></td><td><span class="type-badge in">Entrada</span></td><td>50</td><td>Carlos M.</td><td>17/05/26</td><td><span class="status-dot ok"></span>OK</td></tr>
+              <tr><td><div class="prod-cell"><div class="prod-icon pi-orange"><i class='bx bx-wrench'></i></div>Chave Combinada</div></td><td><span class="type-badge out">Saída</span></td><td>12</td><td>Ana L.</td><td>16/05/26</td><td><span class="status-dot ok"></span>OK</td></tr>
+              <tr><td><div class="prod-cell"><div class="prod-icon pi-violet"><i class='bx bx-laptop'></i></div>Notebook Dell</div></td><td><span class="type-badge out">Saída</span></td><td>3</td><td>Pedro F.</td><td>16/05/26</td><td><span class="status-dot warn"></span>Baixo</td></tr>
+              <tr><td><div class="prod-cell"><div class="prod-icon pi-teal"><i class='bx bx-cabinet'></i></div>Cabo HDMI 2m</div></td><td><span class="type-badge in">Entrada</span></td><td>200</td><td>Maria R.</td><td>15/05/26</td><td><span class="status-dot ok"></span>OK</td></tr>
+              <tr><td><div class="prod-cell"><div class="prod-icon pi-rose"><i class='bx bx-battery'></i></div>Bateria 18650</div></td><td><span class="type-badge out">Saída</span></td><td>80</td><td>João S.</td><td>15/05/26</td><td><span class="status-dot danger"></span>Crítico</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="side-cards">
+          <div class="alert-card">
+            <div class="card-header">
+              <h3><i class='bx bx-error-circle'></i> Alertas</h3>
+              <span class="badge-count">3</span>
+            </div>
+            <ul class="alert-list">
+              <li class="alert-item danger"><i class='bx bx-error'></i><div><p>Bateria 18650 crítico</p><span>Estoque: 8 unidades</span></div></li>
+              <li class="alert-item warn"><i class='bx bx-bell'></i><div><p>Notebook Dell baixo</p><span>Estoque: 15 unidades</span></div></li>
+              <li class="alert-item warn"><i class='bx bx-bell'></i><div><p>Cabo HDMI 1m baixo</p><span>Estoque: 22 unidades</span></div></li>
+            </ul>
+          </div>
+          <div class="task-card">
+            <div class="card-header">
+              <h3><i class='bx bx-check-square'></i> Tarefas</h3>
+              <button class="btn-ghost">+ Nova</button>
+            </div>
+            <ul class="task-list-dash">
+              <li class="done"><i class='bx bx-check-circle'></i><span>Inventário trimestral</span></li>
+              <li class="done"><i class='bx bx-check-circle'></i><span>Conferir entregas</span></li>
+              <li class="pending-task"><i class='bx bx-circle'></i><span>Atualizar fornecedores</span></li>
+              <li class="pending-task"><i class='bx bx-circle'></i><span>Relatório mensal</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ESTOQUE ===== -->
+    <section class="page" id="page-estoque">
+      <div class="page-header">
+        <div>
+          <h1>Estoque</h1>
+          <p class="page-sub">Gerencie todos os produtos cadastrados</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-filter'></i> Filtros</button>
+          <button class="btn-outline"><i class='bx bx-download'></i> Exportar</button>
+          <button class="btn-primary" onclick="openModal('modalProduto')"><i class='bx bx-plus'></i> Novo Produto</button>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mini-stats">
+        <div class="mini-stat"><span class="ms-val">3.847</span><span class="ms-label">Total de itens</span></div>
+        <div class="mini-stat"><span class="ms-val ms-ok">3.210</span><span class="ms-label">Em estoque normal</span></div>
+        <div class="mini-stat"><span class="ms-val ms-warn">482</span><span class="ms-label">Estoque baixo</span></div>
+        <div class="mini-stat"><span class="ms-val ms-danger">155</span><span class="ms-label">Estoque crítico</span></div>
+        <div class="mini-stat"><span class="ms-val">R$ 284k</span><span class="ms-label">Valor total</span></div>
+      </div>
+
+      <!-- Search + Filter bar -->
+      <div class="toolbar">
+        <div class="search-inline">
+          <i class='bx bx-search'></i>
+          <input type="text" placeholder="Buscar produto, SKU, categoria..." id="estoque-search">
+        </div>
+        <div class="filter-tabs">
+          <button class="ftab active" data-filter="todos">Todos</button>
+          <button class="ftab" data-filter="normal">Normal</button>
+          <button class="ftab" data-filter="baixo">Baixo</button>
+          <button class="ftab" data-filter="critico">Crítico</button>
+        </div>
+        <div class="view-toggle">
+          <button class="vtab active" id="viewTable"><i class='bx bx-list-ul'></i></button>
+          <button class="vtab" id="viewGrid"><i class='bx bx-grid-alt'></i></button>
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <div class="table-card" id="tableView">
+        <table class="data-table sortable">
+          <thead>
+            <tr>
+              <th><input type="checkbox" class="check-all"></th>
+              <th>Produto / SKU</th>
+              <th>Categoria</th>
+              <th>Qtd. Atual</th>
+              <th>Qtd. Mín.</th>
+              <th>Localização</th>
+              <th>Valor Unit.</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="estoque-tbody">
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-blue"><i class='bx bx-chip'></i></div><div><p>Processador Intel i9</p><small>SKU-0021</small></div></div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>240</td><td>50</td><td>A-01-03</td><td>R$ 1.890,00</td><td><span class="pill ok">Normal</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-orange"><i class='bx bx-wrench'></i></div><div><p>Chave Combinada 13mm</p><small>SKU-0048</small></div></div></td><td><span class="cat-tag cat-ferr">Ferramentas</span></td><td>85</td><td>30</td><td>B-02-11</td><td>R$ 42,00</td><td><span class="pill ok">Normal</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-violet"><i class='bx bx-laptop'></i></div><div><p>Notebook Dell Vostro</p><small>SKU-0012</small></div></div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>15</td><td>20</td><td>A-03-01</td><td>R$ 4.200,00</td><td><span class="pill warn">Baixo</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-teal"><i class='bx bx-cable-car'></i></div><div><p>Cabo HDMI 2m</p><small>SKU-0093</small></div></div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>420</td><td>100</td><td>C-01-07</td><td>R$ 28,00</td><td><span class="pill ok">Normal</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-rose"><i class='bx bx-battery'></i></div><div><p>Bateria 18650 3.7V</p><small>SKU-0156</small></div></div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>8</td><td>50</td><td>D-02-05</td><td>R$ 18,00</td><td><span class="pill danger">Crítico</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-orange"><i class='bx bx-droplet'></i></div><div><p>Óleo Lubrificante 1L</p><small>SKU-0210</small></div></div></td><td><span class="cat-tag cat-mat">Materiais</span></td><td>63</td><td>40</td><td>E-01-02</td><td>R$ 35,00</td><td><span class="pill ok">Normal</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="prod-cell"><div class="prod-icon pi-blue"><i class='bx bx-memory-card'></i></div><div><p>Memória RAM 16GB DDR5</p><small>SKU-0075</small></div></div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>22</td><td>25</td><td>A-02-08</td><td>R$ 380,00</td><td><span class="pill warn">Baixo</span></td><td><div class="row-actions"><button class="act-btn" title="Editar" onclick="openModal('modalProduto')"><i class='bx bx-edit'></i></button><button class="act-btn danger" title="Excluir"><i class='bx bx-trash'></i></button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span>Mostrando 7 de 3.847 registros</span>
+          <div class="pagination">
+            <button class="pg-btn" disabled><i class='bx bx-chevron-left'></i></button>
+            <button class="pg-btn active">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn">3</button>
+            <span>...</span>
+            <button class="pg-btn">385</button>
+            <button class="pg-btn"><i class='bx bx-chevron-right'></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid View (hidden) -->
+      <div class="product-grid hidden" id="gridView">
+        <div class="product-grid-inner" id="productGridInner"></div>
+      </div>
+    </section>
+
+    <!-- ===== SAÍDAS ===== -->
+    <section class="page" id="page-saidas">
+      <div class="page-header">
+        <div>
+          <h1>Saídas</h1>
+          <p class="page-sub">Registre e acompanhe todas as saídas de estoque</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-filter'></i> Filtrar</button>
+          <button class="btn-outline"><i class='bx bx-download'></i> Exportar</button>
+          <button class="btn-primary" onclick="openModal('modalSaida')"><i class='bx bx-plus'></i> Registrar Saída</button>
+        </div>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat"><span class="ms-val">1.284</span><span class="ms-label">Saídas no mês</span></div>
+        <div class="mini-stat"><span class="ms-val ms-ok">1.180</span><span class="ms-label">Concluídas</span></div>
+        <div class="mini-stat"><span class="ms-val ms-warn">74</span><span class="ms-label">Pendentes</span></div>
+        <div class="mini-stat"><span class="ms-val ms-danger">30</span><span class="ms-label">Canceladas</span></div>
+        <div class="mini-stat"><span class="ms-val">R$ 142k</span><span class="ms-label">Valor total saídas</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-inline">
+          <i class='bx bx-search'></i>
+          <input type="text" placeholder="Buscar por produto, responsável, data...">
+        </div>
+        <div class="filter-tabs">
+          <button class="ftab active">Todas</button>
+          <button class="ftab">Concluídas</button>
+          <button class="ftab">Pendentes</button>
+          <button class="ftab">Canceladas</button>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Produto</th><th>Categoria</th><th>Quantidade</th><th>Destino</th><th>Responsável</th><th>Data/Hora</th><th>Valor Total</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody>
+            <tr><td><span class="id-badge">#4821</span></td><td><div class="prod-cell"><div class="prod-icon pi-blue"><i class='bx bx-chip'></i></div>Processador i9</div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>2</td><td>Dep. TI</td><td>Carlos M.</td><td>17/05 14:32</td><td>R$ 3.780,00</td><td><span class="pill ok">Concluído</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button><button class="act-btn"><i class='bx bx-printer'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#4820</span></td><td><div class="prod-cell"><div class="prod-icon pi-orange"><i class='bx bx-wrench'></i></div>Chave Combinada</div></td><td><span class="cat-tag cat-ferr">Ferramentas</span></td><td>12</td><td>Manutenção</td><td>Ana L.</td><td>16/05 09:15</td><td>R$ 504,00</td><td><span class="pill ok">Concluído</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button><button class="act-btn"><i class='bx bx-printer'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#4819</span></td><td><div class="prod-cell"><div class="prod-icon pi-violet"><i class='bx bx-laptop'></i></div>Notebook Dell</div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>3</td><td>Comercial</td><td>Pedro F.</td><td>16/05 08:40</td><td>R$ 12.600,00</td><td><span class="pill warn">Pendente</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button><button class="act-btn"><i class='bx bx-printer'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#4818</span></td><td><div class="prod-cell"><div class="prod-icon pi-teal"><i class='bx bx-cable-car'></i></div>Cabo HDMI 2m</div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>50</td><td>Estoque B</td><td>Maria R.</td><td>15/05 16:00</td><td>R$ 1.400,00</td><td><span class="pill ok">Concluído</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button><button class="act-btn"><i class='bx bx-printer'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#4817</span></td><td><div class="prod-cell"><div class="prod-icon pi-rose"><i class='bx bx-battery'></i></div>Bateria 18650</div></td><td><span class="cat-tag cat-elet">Eletrônicos</span></td><td>80</td><td>Produção</td><td>João S.</td><td>15/05 11:20</td><td>R$ 1.440,00</td><td><span class="pill danger">Cancelado</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button><button class="act-btn"><i class='bx bx-printer'></i></button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="table-footer">
+          <span>Mostrando 5 de 1.284 registros</span>
+          <div class="pagination">
+            <button class="pg-btn" disabled><i class='bx bx-chevron-left'></i></button>
+            <button class="pg-btn active">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn">3</button>
+            <button class="pg-btn"><i class='bx bx-chevron-right'></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ENTRADAS ===== -->
+    <section class="page" id="page-entradas">
+      <div class="page-header">
+        <div>
+          <h1>Entradas</h1>
+          <p class="page-sub">Registre recebimentos e atualizações de estoque</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-filter'></i> Filtrar</button>
+          <button class="btn-outline"><i class='bx bx-download'></i> Exportar</button>
+          <button class="btn-primary" onclick="openModal('modalEntrada')"><i class='bx bx-plus'></i> Registrar Entrada</button>
+        </div>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat"><span class="ms-val">892</span><span class="ms-label">Entradas no mês</span></div>
+        <div class="mini-stat"><span class="ms-val ms-ok">840</span><span class="ms-label">Recebidas</span></div>
+        <div class="mini-stat"><span class="ms-val ms-warn">42</span><span class="ms-label">Aguardando</span></div>
+        <div class="mini-stat"><span class="ms-val ms-danger">10</span><span class="ms-label">Devolvidas</span></div>
+        <div class="mini-stat"><span class="ms-val">R$ 198k</span><span class="ms-label">Valor total entradas</span></div>
+      </div>
+      <div class="toolbar">
+        <div class="search-inline"><i class='bx bx-search'></i><input type="text" placeholder="Buscar entrada, NF, fornecedor..."></div>
+        <div class="filter-tabs"><button class="ftab active">Todas</button><button class="ftab">Recebidas</button><button class="ftab">Aguardando</button><button class="ftab">Devolvidas</button></div>
+      </div>
+      <div class="table-card">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Produto</th><th>Fornecedor</th><th>NF</th><th>Quantidade</th><th>Responsável</th><th>Data</th><th>Valor Total</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody>
+            <tr><td><span class="id-badge">#E301</span></td><td><div class="prod-cell"><div class="prod-icon pi-blue"><i class='bx bx-chip'></i></div>Processador i9</div></td><td>TechDistrib</td><td>NF-9821</td><td>50</td><td>Carlos M.</td><td>17/05/26</td><td>R$ 94.500,00</td><td><span class="pill ok">Recebido</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#E300</span></td><td><div class="prod-cell"><div class="prod-icon pi-teal"><i class='bx bx-cable-car'></i></div>Cabo HDMI 2m</div></td><td>CabloMax</td><td>NF-7743</td><td>200</td><td>Maria R.</td><td>15/05/26</td><td>R$ 5.600,00</td><td><span class="pill ok">Recebido</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button></div></td></tr>
+            <tr><td><span class="id-badge">#E299</span></td><td><div class="prod-cell"><div class="prod-icon pi-orange"><i class='bx bx-droplet'></i></div>Óleo Lubrificante</div></td><td>LubroTech</td><td>NF-5521</td><td>100</td><td>Pedro F.</td><td>14/05/26</td><td>R$ 3.500,00</td><td><span class="pill warn">Aguardando</span></td><td><div class="row-actions"><button class="act-btn"><i class='bx bx-show'></i></button></div></td></tr>
+          </tbody>
+        </table>
+        <div class="table-footer"><span>Mostrando 3 de 892 registros</span><div class="pagination"><button class="pg-btn active">1</button><button class="pg-btn">2</button></div></div>
+      </div>
+    </section>
+
+    <!-- ===== FORNECEDORES ===== -->
+    <section class="page" id="page-fornecedor">
+      <div class="page-header">
+        <div>
+          <h1>Fornecedores</h1>
+          <p class="page-sub">Gerencie seus parceiros e fornecedores</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-filter'></i> Filtrar</button>
+          <button class="btn-primary" onclick="openModal('modalFornecedor')"><i class='bx bx-plus'></i> Novo Fornecedor</button>
+        </div>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat"><span class="ms-val">48</span><span class="ms-label">Fornecedores ativos</span></div>
+        <div class="mini-stat"><span class="ms-val ms-warn">6</span><span class="ms-label">Inativos</span></div>
+        <div class="mini-stat"><span class="ms-val">R$ 1,2M</span><span class="ms-label">Total compras/ano</span></div>
+        <div class="mini-stat"><span class="ms-val ms-ok">38</span><span class="ms-label">Com entrega no prazo</span></div>
+      </div>
+      <div class="toolbar">
+        <div class="search-inline"><i class='bx bx-search'></i><input type="text" placeholder="Buscar por nome, CNPJ, categoria..."></div>
+        <div class="filter-tabs"><button class="ftab active">Todos</button><button class="ftab">Ativos</button><button class="ftab">Inativos</button></div>
+      </div>
+      <div class="supplier-grid">
+        <div class="supplier-card">
+          <div class="supplier-header">
+            <div class="supplier-logo">TD</div>
+            <div><h4>TechDistrib Ltda</h4><p>CNPJ: 12.345.678/0001-90</p></div>
+            <span class="pill ok">Ativo</span>
+          </div>
+          <div class="supplier-info">
+            <div><i class='bx bx-category'></i> Eletrônicos</div>
+            <div><i class='bx bx-phone'></i> (11) 9 8765-4321</div>
+            <div><i class='bx bx-envelope'></i> contato@techdistrib.com</div>
+            <div><i class='bx bx-map'></i> São Paulo, SP</div>
+          </div>
+          <div class="supplier-stats">
+            <div><span>Entregas</span><b class="ok">94%</b></div>
+            <div><span>Pedidos/ano</span><b>142</b></div>
+            <div><span>Volume</span><b>R$ 480k</b></div>
+          </div>
+          <div class="supplier-actions">
+            <button class="btn-ghost" onclick="openModal('modalFornecedor')"><i class='bx bx-edit'></i> Editar</button>
+            <button class="btn-outline"><i class='bx bx-history'></i> Histórico</button>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-header">
+            <div class="supplier-logo" style="background: #a78bfa22; color: #a78bfa">CM</div>
+            <div><h4>CabloMax Ind.</h4><p>CNPJ: 98.765.432/0001-11</p></div>
+            <span class="pill ok">Ativo</span>
+          </div>
+          <div class="supplier-info">
+            <div><i class='bx bx-category'></i> Cabos e Conectores</div>
+            <div><i class='bx bx-phone'></i> (21) 9 4321-8765</div>
+            <div><i class='bx bx-envelope'></i> vendas@cablomax.com</div>
+            <div><i class='bx bx-map'></i> Rio de Janeiro, RJ</div>
+          </div>
+          <div class="supplier-stats">
+            <div><span>Entregas</span><b class="ok">98%</b></div>
+            <div><span>Pedidos/ano</span><b>88</b></div>
+            <div><span>Volume</span><b>R$ 210k</b></div>
+          </div>
+          <div class="supplier-actions">
+            <button class="btn-ghost" onclick="openModal('modalFornecedor')"><i class='bx bx-edit'></i> Editar</button>
+            <button class="btn-outline"><i class='bx bx-history'></i> Histórico</button>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-header">
+            <div class="supplier-logo" style="background: #2dd4bf22; color: #2dd4bf">LT</div>
+            <div><h4>LubroTech S.A.</h4><p>CNPJ: 55.444.333/0001-22</p></div>
+            <span class="pill warn">Inativo</span>
+          </div>
+          <div class="supplier-info">
+            <div><i class='bx bx-category'></i> Materiais Industriais</div>
+            <div><i class='bx bx-phone'></i> (31) 9 1234-5678</div>
+            <div><i class='bx bx-envelope'></i> comercial@lubrotech.com</div>
+            <div><i class='bx bx-map'></i> Belo Horizonte, MG</div>
+          </div>
+          <div class="supplier-stats">
+            <div><span>Entregas</span><b class="warn">72%</b></div>
+            <div><span>Pedidos/ano</span><b>34</b></div>
+            <div><span>Volume</span><b>R$ 88k</b></div>
+          </div>
+          <div class="supplier-actions">
+            <button class="btn-ghost" onclick="openModal('modalFornecedor')"><i class='bx bx-edit'></i> Editar</button>
+            <button class="btn-outline"><i class='bx bx-history'></i> Histórico</button>
+          </div>
+        </div>
+        <div class="supplier-card">
+          <div class="supplier-header">
+            <div class="supplier-logo" style="background: #fb718522; color: #fb7185">FP</div>
+            <div><h4>FerroParts ME</h4><p>CNPJ: 11.222.333/0001-44</p></div>
+            <span class="pill ok">Ativo</span>
+          </div>
+          <div class="supplier-info">
+            <div><i class='bx bx-category'></i> Ferramentas e Peças</div>
+            <div><i class='bx bx-phone'></i> (41) 9 8888-7777</div>
+            <div><i class='bx bx-envelope'></i> pedidos@ferroparts.com</div>
+            <div><i class='bx bx-map'></i> Curitiba, PR</div>
+          </div>
+          <div class="supplier-stats">
+            <div><span>Entregas</span><b class="ok">89%</b></div>
+            <div><span>Pedidos/ano</span><b>201</b></div>
+            <div><span>Volume</span><b>R$ 340k</b></div>
+          </div>
+          <div class="supplier-actions">
+            <button class="btn-ghost" onclick="openModal('modalFornecedor')"><i class='bx bx-edit'></i> Editar</button>
+            <button class="btn-outline"><i class='bx bx-history'></i> Histórico</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== USUÁRIOS ===== -->
+    <section class="page" id="page-usuarios">
+      <div class="page-header">
+        <div>
+          <h1>Usuários</h1>
+          <p class="page-sub">Gerencie acessos e permissões do sistema</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-outline"><i class='bx bx-filter'></i> Filtrar</button>
+          <button class="btn-primary" onclick="openModal('modalUsuario')"><i class='bx bx-plus'></i> Novo Usuário</button>
+        </div>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat"><span class="ms-val">24</span><span class="ms-label">Usuários ativos</span></div>
+        <div class="mini-stat"><span class="ms-val ms-warn">3</span><span class="ms-label">Inativos</span></div>
+        <div class="mini-stat"><span class="ms-val">4</span><span class="ms-label">Administradores</span></div>
+        <div class="mini-stat"><span class="ms-val">8</span><span class="ms-label">Online agora</span></div>
+      </div>
+      <div class="toolbar">
+        <div class="search-inline"><i class='bx bx-search'></i><input type="text" placeholder="Buscar usuário, e-mail, função..."></div>
+        <div class="filter-tabs"><button class="ftab active">Todos</button><button class="ftab">Administradores</button><button class="ftab">Operadores</button><button class="ftab">Visualizadores</button></div>
+      </div>
+      <div class="table-card">
+        <table class="data-table">
+          <thead><tr><th>Usuário</th><th>E-mail</th><th>Função</th><th>Departamento</th><th>Último acesso</th><th>Status</th><th>Ações</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="user-cell-full"><div class="uavatar ua-orange">AM</div><div><p>Admin Master</p><small>admin@korearmazen.com</small></div></div></td>
+              <td>admin@korearmazen.com</td>
+              <td><span class="role-badge role-admin">Admin</span></td>
+              <td>T.I.</td>
+              <td>Agora</td>
+              <td><span class="online-dot"></span><span class="pill ok">Ativo</span></td>
+              <td><div class="row-actions"><button class="act-btn" onclick="openModal('modalUsuario')"><i class='bx bx-edit'></i></button><button class="act-btn danger"><i class='bx bx-block'></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="user-cell-full"><div class="uavatar ua-violet">CM</div><div><p>Carlos Mendes</p><small>carlos@korearmazen.com</small></div></div></td>
+              <td>carlos@korearmazen.com</td>
+              <td><span class="role-badge role-op">Operador</span></td>
+              <td>Estoque</td>
+              <td>Hoje 14:32</td>
+              <td><span class="online-dot"></span><span class="pill ok">Ativo</span></td>
+              <td><div class="row-actions"><button class="act-btn" onclick="openModal('modalUsuario')"><i class='bx bx-edit'></i></button><button class="act-btn danger"><i class='bx bx-block'></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="user-cell-full"><div class="uavatar ua-teal">AL</div><div><p>Ana Lima</p><small>ana@korearmazen.com</small></div></div></td>
+              <td>ana@korearmazen.com</td>
+              <td><span class="role-badge role-op">Operador</span></td>
+              <td>Compras</td>
+              <td>Ontem 09:15</td>
+              <td><span class="pill ok">Ativo</span></td>
+              <td><div class="row-actions"><button class="act-btn" onclick="openModal('modalUsuario')"><i class='bx bx-edit'></i></button><button class="act-btn danger"><i class='bx bx-block'></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="user-cell-full"><div class="uavatar ua-rose">PF</div><div><p>Pedro Fonseca</p><small>pedro@korearmazen.com</small></div></div></td>
+              <td>pedro@korearmazen.com</td>
+              <td><span class="role-badge role-view">Visualizador</span></td>
+              <td>Comercial</td>
+              <td>16/05/26</td>
+              <td><span class="pill ok">Ativo</span></td>
+              <td><div class="row-actions"><button class="act-btn" onclick="openModal('modalUsuario')"><i class='bx bx-edit'></i></button><button class="act-btn danger"><i class='bx bx-block'></i></button></div></td>
+            </tr>
+            <tr>
+              <td><div class="user-cell-full"><div class="uavatar" style="background:#e5e7eb;color:#6b7280">JS</div><div><p>João Santos</p><small>joao@korearmazen.com</small></div></div></td>
+              <td>joao@korearmazen.com</td>
+              <td><span class="role-badge role-op">Operador</span></td>
+              <td>Produção</td>
+              <td>10/05/26</td>
+              <td><span class="pill danger">Inativo</span></td>
+              <td><div class="row-actions"><button class="act-btn" onclick="openModal('modalUsuario')"><i class='bx bx-edit'></i></button><button class="act-btn"><i class='bx bx-check'></i></button></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footer"><span>Mostrando 5 de 27 registros</span><div class="pagination"><button class="pg-btn active">1</button><button class="pg-btn">2</button></div></div>
+      </div>
+    </section>
+
+    <!-- ===== RELATÓRIOS ===== -->
+    <section class="page" id="page-relatorios">
+      <div class="page-header">
+        <div>
+          <h1>Relatórios</h1>
+          <p class="page-sub">Análises e exportações de dados do sistema</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-primary"><i class='bx bx-download'></i> Gerar Relatório</button>
+        </div>
+      </div>
+      <div class="report-grid">
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-orange"><i class='bx bx-box'></i></div>
+          <h4>Relatório de Estoque</h4>
+          <p>Posição atual, giro, estoque mínimo e máximo</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 17/05/26</span><span class="badge-count">PDF / CSV</span></div>
+        </div>
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-violet"><i class='bx bx-export'></i></div>
+          <h4>Relatório de Saídas</h4>
+          <p>Todas as saídas por período, produto e responsável</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 16/05/26</span><span class="badge-count">PDF / CSV</span></div>
+        </div>
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-teal"><i class='bx bx-import'></i></div>
+          <h4>Relatório de Entradas</h4>
+          <p>Recebimentos por fornecedor, produto e período</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 16/05/26</span><span class="badge-count">PDF / CSV</span></div>
+        </div>
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-rose"><i class='bx bx-dollar'></i></div>
+          <h4>Relatório Financeiro</h4>
+          <p>Valoração do estoque, compras e perdas</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 15/05/26</span><span class="badge-count">PDF / XLSX</span></div>
+        </div>
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-orange"><i class='bx bx-error-circle'></i></div>
+          <h4>Alertas e Críticos</h4>
+          <p>Produtos abaixo do estoque mínimo e críticos</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 17/05/26</span><span class="badge-count">PDF / CSV</span></div>
+        </div>
+        <div class="report-card" onclick="openModal('modalRelatorio')">
+          <div class="report-icon ri-violet"><i class='bx bx-user'></i></div>
+          <h4>Relatório por Usuário</h4>
+          <p>Ações realizadas por colaborador no período</p>
+          <div class="report-meta"><span><i class='bx bx-time'></i> Gerado: 14/05/26</span><span class="badge-count">PDF / CSV</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONFIGURAÇÕES ===== -->
+    <section class="page" id="page-configuracoes">
+      <div class="page-header">
+        <div>
+          <h1>Configurações</h1>
+          <p class="page-sub">Personalize o sistema conforme sua necessidade</p>
+        </div>
+        <div class="header-actions">
+          <button class="btn-primary"><i class='bx bx-save'></i> Salvar Alterações</button>
+        </div>
+      </div>
+
+      <div class="settings-layout">
+        <nav class="settings-nav">
+          <button class="stab active" data-stab="empresa"><i class='bx bx-building'></i> Empresa</button>
+          <button class="stab" data-stab="sistema"><i class='bx bxs-cog'></i> Sistema</button>
+          <button class="stab" data-stab="notificacoes"><i class='bx bx-bell'></i> Notificações</button>
+          <button class="stab" data-stab="seguranca"><i class='bx bx-shield'></i> Segurança</button>
+          <button class="stab" data-stab="backup"><i class='bx bx-cloud'></i> Backup</button>
+          <button class="stab" data-stab="integracao"><i class='bx bx-link'></i> Integrações</button>
+        </nav>
+
+        <div class="settings-content">
+          <!-- Empresa -->
+          <div class="stab-panel active" id="stab-empresa">
+            <h3 class="settings-title">Dados da Empresa</h3>
+            <div class="logo-upload">
+              <div class="logo-preview">KA</div>
+              <div>
+                <button class="btn-outline"><i class='bx bx-upload'></i> Alterar Logo</button>
+                <p>PNG, JPG até 2MB — recomendado 200x200px</p>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group"><label>Razão Social</label><input type="text" value="KoreArmazen Sistemas de Gestão Ltda"></div>
+              <div class="form-group"><label>Nome Fantasia</label><input type="text" value="KoreArmazen"></div>
+              <div class="form-group"><label>CNPJ</label><input type="text" value="12.345.678/0001-90"></div>
+              <div class="form-group"><label>Inscrição Estadual</label><input type="text" value="123.456.789.000"></div>
+              <div class="form-group full"><label>Endereço</label><input type="text" value="Av. Paulista, 1000 — São Paulo, SP — 01310-100"></div>
+              <div class="form-group"><label>Telefone</label><input type="text" value="(11) 3000-0000"></div>
+              <div class="form-group"><label>E-mail Corporativo</label><input type="email" value="contato@korearmazen.com"></div>
+              <div class="form-group"><label>Site</label><input type="text" value="www.korearmazen.com"></div>
+              <div class="form-group"><label>Segmento</label>
+                <select><option>Distribuição</option><option>Varejo</option><option>Indústria</option></select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sistema -->
+          <div class="stab-panel" id="stab-sistema">
+            <h3 class="settings-title">Configurações do Sistema</h3>
+            <div class="settings-section">
+              <h4>Aparência</h4>
+              <div class="setting-row">
+                <div><p>Tema escuro</p><small>Alterna entre modo claro e escuro</small></div>
+                <label class="toggle"><input type="checkbox" id="darkToggle"><span class="toggle-slider"></span></label>
+              </div>
+              <div class="setting-row">
+                <div><p>Sidebar compacta por padrão</p><small>Inicia com o menu recolhido</small></div>
+                <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+              </div>
+              <div class="setting-row">
+                <div><p>Animações</p><small>Ativa transições e animações na interface</small></div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h4>Estoque</h4>
+              <div class="form-grid">
+                <div class="form-group"><label>Estoque mínimo padrão</label><input type="number" value="20"></div>
+                <div class="form-group"><label>Moeda do sistema</label><select><option>BRL — Real Brasileiro</option><option>USD</option><option>EUR</option></select></div>
+                <div class="form-group"><label>Unidade padrão</label><select><option>Unidade (un)</option><option>Caixa (cx)</option><option>Kilogram (kg)</option></select></div>
+                <div class="form-group"><label>Casas decimais</label><select><option>2 casas (0,00)</option><option>3 casas (0,000)</option></select></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notificações -->
+          <div class="stab-panel" id="stab-notificacoes">
+            <h3 class="settings-title">Notificações</h3>
+            <div class="settings-section">
+              <h4>Alertas de Estoque</h4>
+              <div class="setting-row"><div><p>Estoque crítico</p><small>Notificar quando produto atingir estoque crítico</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="setting-row"><div><p>Estoque baixo</p><small>Notificar quando produto atingir estoque mínimo</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="setting-row"><div><p>Produto zerado</p><small>Notificar quando produto atingir zero</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="settings-section">
+              <h4>Canais de Notificação</h4>
+              <div class="setting-row"><div><p>E-mail</p><small>Enviar alertas por e-mail</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="setting-row"><div><p>Notificações no sistema</p><small>Exibir na barra de notificações</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="setting-row"><div><p>WhatsApp</p><small>Integração com WhatsApp Business</small></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+          </div>
+
+          <!-- Segurança -->
+          <div class="stab-panel" id="stab-seguranca">
+            <h3 class="settings-title">Segurança</h3>
+            <div class="settings-section">
+              <h4>Autenticação</h4>
+              <div class="setting-row"><div><p>Autenticação em 2 fatores (2FA)</p><small>Exige confirmação adicional no login</small></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+              <div class="setting-row"><div><p>Sessão automática expira</p><small>Desconecta após inatividade</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="form-grid" style="margin-top:12px">
+                <div class="form-group"><label>Tempo de sessão (min)</label><input type="number" value="60"></div>
+                <div class="form-group"><label>Tentativas de login</label><input type="number" value="5"></div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h4>Alterar Senha</h4>
+              <div class="form-grid">
+                <div class="form-group full"><label>Senha atual</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>Nova senha</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>Confirmar nova senha</label><input type="password" placeholder="••••••••"></div>
+              </div>
+              <button class="btn-primary" style="margin-top:12px">Alterar Senha</button>
+            </div>
+          </div>
+
+          <!-- Backup -->
+          <div class="stab-panel" id="stab-backup">
+            <h3 class="settings-title">Backup e Dados</h3>
+            <div class="settings-section">
+              <h4>Backup Automático</h4>
+              <div class="setting-row"><div><p>Backup automático ativo</p><small>Realiza backup diário dos dados</small></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+              <div class="form-grid" style="margin-top:12px">
+                <div class="form-group"><label>Frequência</label><select><option>Diário</option><option>Semanal</option><option>Mensal</option></select></div>
+                <div class="form-group"><label>Horário</label><input type="time" value="02:00"></div>
+                <div class="form-group"><label>Retenção (dias)</label><input type="number" value="30"></div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <h4>Ações Manuais</h4>
+              <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <button class="btn-outline"><i class='bx bx-cloud-download'></i> Fazer Backup Agora</button>
+                <button class="btn-outline"><i class='bx bx-cloud-upload'></i> Restaurar Backup</button>
+                <button class="btn-outline"><i class='bx bx-export'></i> Exportar todos os dados</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Integrações -->
+          <div class="stab-panel" id="stab-integracao">
+            <h3 class="settings-title">Integrações</h3>
+            <div class="integration-list">
+              <div class="integration-item">
+                <div class="int-icon" style="background:#25D36622">🟢</div>
+                <div class="int-info"><h5>WhatsApp Business</h5><p>Alertas e notificações via WhatsApp</p></div>
+                <span class="pill danger">Desconectado</span>
+                <button class="btn-outline">Conectar</button>
+              </div>
+              <div class="integration-item">
+                <div class="int-icon" style="background:#4285F422">📧</div>
+                <div class="int-info"><h5>Google Workspace</h5><p>Sincroniza usuários e e-mails</p></div>
+                <span class="pill ok">Conectado</span>
+                <button class="btn-ghost">Configurar</button>
+              </div>
+              <div class="integration-item">
+                <div class="int-icon" style="background:#E3000022">🛒</div>
+                <div class="int-info"><h5>ERP Integração</h5><p>Sincronização bidirecional com ERP</p></div>
+                <span class="pill danger">Desconectado</span>
+                <button class="btn-outline">Conectar</button>
+              </div>
+              <div class="integration-item">
+                <div class="int-icon" style="background:#f9731622">📊</div>
+                <div class="int-info"><h5>Power BI</h5><p>Dashboards avançados de BI</p></div>
+                <span class="pill warn">Em teste</span>
+                <button class="btn-ghost">Configurar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+<!-- Modal Produto -->
+<div class="modal" id="modalProduto">
+  <div class="modal-header">
+    <h3><i class='bx bx-cube-alt'></i> Cadastrar Produto</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group full"><label>Nome do Produto *</label><input type="text" placeholder="Ex: Processador Intel i9"></div>
+      <div class="form-group"><label>SKU / Código *</label><input type="text" placeholder="SKU-0001"></div>
+      <div class="form-group"><label>Categoria *</label><select><option>Eletrônicos</option><option>Ferramentas</option><option>Materiais</option><option>Outros</option></select></div>
+      <div class="form-group"><label>Quantidade Atual *</label><input type="number" placeholder="0"></div>
+      <div class="form-group"><label>Quantidade Mínima</label><input type="number" placeholder="20"></div>
+      <div class="form-group"><label>Quantidade Máxima</label><input type="number" placeholder="500"></div>
+      <div class="form-group"><label>Valor Unitário (R$)</label><input type="number" step="0.01" placeholder="0,00"></div>
+      <div class="form-group"><label>Unidade</label><select><option>Unidade</option><option>Caixa</option><option>KG</option><option>Metro</option></select></div>
+      <div class="form-group"><label>Localização</label><input type="text" placeholder="Ex: A-01-03"></div>
+      <div class="form-group"><label>Fornecedor</label><select><option>TechDistrib Ltda</option><option>CabloMax Ind.</option><option>FerroParts ME</option></select></div>
+      <div class="form-group full"><label>Descrição</label><textarea placeholder="Descreva o produto..."></textarea></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Produto cadastrado com sucesso!','ok');closeModal()"><i class='bx bx-save'></i> Salvar Produto</button>
+  </div>
+</div>
+
+<!-- Modal Saída -->
+<div class="modal" id="modalSaida">
+  <div class="modal-header">
+    <h3><i class='bx bx-export'></i> Registrar Saída</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group full"><label>Produto *</label><select><option>Processador Intel i9 — SKU-0021</option><option>Notebook Dell Vostro — SKU-0012</option><option>Cabo HDMI 2m — SKU-0093</option></select></div>
+      <div class="form-group"><label>Quantidade *</label><input type="number" placeholder="0"></div>
+      <div class="form-group"><label>Destino *</label><input type="text" placeholder="Ex: Dep. TI, Produção..."></div>
+      <div class="form-group"><label>Responsável *</label><select><option>Carlos Mendes</option><option>Ana Lima</option><option>Pedro Fonseca</option></select></div>
+      <div class="form-group"><label>Data da Saída</label><input type="date"></div>
+      <div class="form-group"><label>Motivo</label><select><option>Uso interno</option><option>Venda</option><option>Transferência</option><option>Descarte</option></select></div>
+      <div class="form-group full"><label>Observações</label><textarea placeholder="Observações adicionais..."></textarea></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Saída registrada com sucesso!','ok');closeModal()"><i class='bx bx-save'></i> Registrar Saída</button>
+  </div>
+</div>
+
+<!-- Modal Entrada -->
+<div class="modal" id="modalEntrada">
+  <div class="modal-header">
+    <h3><i class='bx bx-import'></i> Registrar Entrada</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group full"><label>Produto *</label><select><option>Processador Intel i9 — SKU-0021</option><option>Cabo HDMI 2m — SKU-0093</option><option>Bateria 18650 — SKU-0156</option></select></div>
+      <div class="form-group"><label>Quantidade *</label><input type="number" placeholder="0"></div>
+      <div class="form-group"><label>Fornecedor *</label><select><option>TechDistrib Ltda</option><option>CabloMax Ind.</option><option>LubroTech S.A.</option></select></div>
+      <div class="form-group"><label>Número NF</label><input type="text" placeholder="NF-0000"></div>
+      <div class="form-group"><label>Data de Recebimento</label><input type="date"></div>
+      <div class="form-group"><label>Valor Unitário (R$)</label><input type="number" step="0.01" placeholder="0,00"></div>
+      <div class="form-group full"><label>Observações</label><textarea placeholder="Observações adicionais..."></textarea></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Entrada registrada com sucesso!','ok');closeModal()"><i class='bx bx-save'></i> Registrar Entrada</button>
+  </div>
+</div>
+
+<!-- Modal Fornecedor -->
+<div class="modal" id="modalFornecedor">
+  <div class="modal-header">
+    <h3><i class='bx bxs-truck'></i> Cadastrar Fornecedor</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group full"><label>Razão Social *</label><input type="text" placeholder="Ex: TechDistrib Ltda"></div>
+      <div class="form-group"><label>Nome Fantasia</label><input type="text" placeholder="Ex: TechDistrib"></div>
+      <div class="form-group"><label>CNPJ *</label><input type="text" placeholder="00.000.000/0001-00"></div>
+      <div class="form-group"><label>Inscrição Estadual</label><input type="text" placeholder="000.000.000.000"></div>
+      <div class="form-group"><label>Categoria</label><select><option>Eletrônicos</option><option>Ferramentas</option><option>Materiais</option><option>Outros</option></select></div>
+      <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(00) 9 0000-0000"></div>
+      <div class="form-group"><label>E-mail *</label><input type="email" placeholder="contato@empresa.com"></div>
+      <div class="form-group"><label>Site</label><input type="text" placeholder="www.empresa.com"></div>
+      <div class="form-group full"><label>Endereço Completo</label><input type="text" placeholder="Rua, número, bairro, cidade, estado, CEP"></div>
+      <div class="form-group"><label>Prazo de Entrega (dias)</label><input type="number" placeholder="7"></div>
+      <div class="form-group"><label>Condição de Pagamento</label><select><option>À vista</option><option>30 dias</option><option>30/60 dias</option><option>30/60/90 dias</option></select></div>
+      <div class="form-group full"><label>Observações</label><textarea placeholder="Contato preferencial, horários, observações..."></textarea></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Fornecedor cadastrado!','ok');closeModal()"><i class='bx bx-save'></i> Salvar Fornecedor</button>
+  </div>
+</div>
+
+<!-- Modal Usuário -->
+<div class="modal" id="modalUsuario">
+  <div class="modal-header">
+    <h3><i class='bx bxs-user-plus'></i> Cadastrar Usuário</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group"><label>Nome Completo *</label><input type="text" placeholder="Ex: Carlos Mendes"></div>
+      <div class="form-group"><label>E-mail *</label><input type="email" placeholder="email@empresa.com"></div>
+      <div class="form-group"><label>Função *</label><select><option>Administrador</option><option>Operador</option><option>Visualizador</option></select></div>
+      <div class="form-group"><label>Departamento</label><select><option>T.I.</option><option>Estoque</option><option>Compras</option><option>Comercial</option><option>Produção</option></select></div>
+      <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(00) 9 0000-0000"></div>
+      <div class="form-group"><label>Status</label><select><option>Ativo</option><option>Inativo</option></select></div>
+      <div class="form-group"><label>Senha *</label><input type="password" placeholder="••••••••"></div>
+      <div class="form-group"><label>Confirmar Senha *</label><input type="password" placeholder="••••••••"></div>
+    </div>
+    <div class="perm-section">
+      <h4>Permissões</h4>
+      <div class="perm-grid">
+        <label><input type="checkbox" checked> Visualizar estoque</label>
+        <label><input type="checkbox" checked> Registrar entradas</label>
+        <label><input type="checkbox" checked> Registrar saídas</label>
+        <label><input type="checkbox"> Excluir registros</label>
+        <label><input type="checkbox"> Gerenciar usuários</label>
+        <label><input type="checkbox"> Gerar relatórios</label>
+        <label><input type="checkbox"> Configurações</label>
+        <label><input type="checkbox"> Gerenciar fornecedores</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Usuário criado com sucesso!','ok');closeModal()"><i class='bx bx-save'></i> Criar Usuário</button>
+  </div>
+</div>
+
+<!-- Modal Relatório -->
+<div class="modal" id="modalRelatorio">
+  <div class="modal-header">
+    <h3><i class='bx bx-bar-chart-alt-2'></i> Gerar Relatório</h3>
+    <button class="modal-close" onclick="closeModal()"><i class='bx bx-x'></i></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="form-group"><label>Período — De</label><input type="date"></div>
+      <div class="form-group"><label>Período — Até</label><input type="date"></div>
+      <div class="form-group"><label>Categoria</label><select><option>Todas</option><option>Eletrônicos</option><option>Ferramentas</option><option>Materiais</option></select></div>
+      <div class="form-group"><label>Formato</label><select><option>PDF</option><option>CSV</option><option>XLSX</option></select></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+    <button class="btn-primary" onclick="showToast('Relatório gerado! Download iniciado.','ok');closeModal()"><i class='bx bx-download'></i> Gerar e Baixar</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class='bx bx-check-circle'></i><span id="toastMsg"></span></div>
+
+<script src="/assets/kore-sistema/script.js"></script>
+</body>
+</html>
